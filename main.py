@@ -6,4 +6,4 @@ data = read.read_file()
 
 valid = Validator(data)
 
-print(data[0])
+
