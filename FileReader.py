@@ -1,7 +1,10 @@
 import json
+import Users
 
 
 class FileReader():
+    data: list[Users]
+
     def __init__(self, path):
         self.path = path
 
