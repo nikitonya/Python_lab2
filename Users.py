@@ -4,7 +4,7 @@ class Users:
     snils: str
     passport_number: int
     occupation: str
-    age: int
+    age: str
     academic_degree: str
     worldview: str
     address: str
