@@ -6,6 +6,6 @@ data = read.read_file()
 
 valid = Validator(data)
 
-print(valid.get_list())
+print(valid.parse_valid())
 
 
