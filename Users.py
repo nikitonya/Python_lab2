@@ -2,9 +2,9 @@ class Users:
     email: str
     height: str
     snils: str
-    passport_number: str
+    passport_number: int
     occupation: str
-    age: str
+    age: int
     academic_degree: str
     worldview: str
     address: str

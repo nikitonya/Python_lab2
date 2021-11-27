@@ -18,12 +18,11 @@ class Validator():
             return True
         return False
 
-    def check_height(self, height:str) -> bool:
-        f_height = float(height)
-        if 2.3 > f_height > 1.0:
+    def check_height(self, height: str) -> bool:
+        pattern = "[1-2]+\.+\d\d"
+        if re.match(pattern, str(height)):
             return True
         return False
-
 
     def parse_valid(self) -> list[Users]:
         legal_users: list[Users] = []
