@@ -1,4 +1,14 @@
 class Users:
+    email: str
+    height: str
+    snils: str
+    passport_number: str
+    occupation: str
+    age: str
+    academic_degree: str
+    worldview: str
+    address: str
+
     def __init__(self, dict: dict):
         self.email = dict['email']
         self.height = dict['height']
