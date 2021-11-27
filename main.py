@@ -5,7 +5,8 @@ read = FileReader("C:\\Users\\nikit\\PycharmProjects\\Python_lab2\\27.txt")
 data = read.read_file()
 
 valid = Validator(data)
+valid.parse_valid()
 
-print(valid.parse_valid())
+
 
 

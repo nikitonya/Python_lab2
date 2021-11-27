@@ -18,16 +18,25 @@ class Validator():
             return True
         return False
 
-    def parse_user(self, user: Users):
-        illegal_keys = []
-        if not self.check_email(user['email']):
-            illegal_keys.append(user['email'])
-        return illegal_keys
+    def check_height(self, height:str) -> bool:
+        f_height = float(height)
+        if 2.3 > f_height > 1.0:
+            return True
+        return False
 
-    def parse_valid(self):
-        legal_users = []
+
+    def parse_valid(self) -> list[Users]:
+        legal_users: list[Users] = []
         for i in self.list_users:
             illegal_keys = self.parse_user(i)
             if (len(illegal_keys) == 0):
                 legal_users.append(i)
         return legal_users
+
+    def parse_user(self, user: Users) -> list[str]:
+        illegal_keys = []
+        if not self.check_email(user['email']):
+            illegal_keys.append('email')
+        if not self.check_height(user['height']):
+            illegal_keys.append('height')
+        return illegal_keys
