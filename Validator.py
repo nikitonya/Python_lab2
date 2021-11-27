@@ -19,8 +19,20 @@ class Validator():
         return False
 
     def check_height(self, height: str) -> bool:
-        pattern = "[1-2]+\.+\d\d"
+        pattern = "^[1-2]+\.+\d\d$"
         if re.match(pattern, str(height)):
+            return True
+        return False
+
+    def check_snils(self, snils: str) -> bool:
+        pattern = "^\d{11}$"
+        if re.match(pattern, snils):
+            return True
+        return False
+
+    def check_passport_number(self, passport_number: int) -> bool:
+        pattern = "^\d{6}$"
+        if re.match(pattern, passport_number):
             return True
         return False
 
@@ -38,4 +50,7 @@ class Validator():
             illegal_keys.append('email')
         if not self.check_height(user['height']):
             illegal_keys.append('height')
+        if not self.check_snils(user['snils']):
+            illegal_keys.append('snils')
+
         return illegal_keys
