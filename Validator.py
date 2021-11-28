@@ -30,7 +30,7 @@ class Validator():
             return True
         return False
 
-    def check_passport_number(self, passport_number: int) -> bool:
+    def check_passport_number(self, passport_number: str) -> bool:
         pattern = "^\d{6}$"
         if re.match(pattern, str(passport_number)):
             return True

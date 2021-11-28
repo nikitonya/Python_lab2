@@ -2,7 +2,7 @@ class Users:
     email: str
     height: str
     snils: str
-    passport_number: int
+    passport_number: str
     occupation: str
     age: str
     academic_degree: str
