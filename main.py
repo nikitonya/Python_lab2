@@ -7,6 +7,7 @@ data = read.read_file()
 
 valid = Validator(data)
 valid.parse_valid()
+print(valid.parse_invalid())
 
 file = open("C:\\Users\\nikit\\PycharmProjects\\Python_lab2\\output.txt", 'w')
 for i in valid.parse_valid():

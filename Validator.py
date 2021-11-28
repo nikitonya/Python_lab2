@@ -48,7 +48,6 @@ class Validator():
             return True
         return False
 
-
     def check_academic_degree(self, academic_degree: str) -> bool:
         pattern = "Кандидат наук|Доктор наук"
         if re.match(pattern, academic_degree):
@@ -69,7 +68,6 @@ class Validator():
             return True
         return False
 
-
     def parse_valid(self) -> list[Users]:
         legal_users: list[Users] = []
         for i in self.list_users:
@@ -78,8 +76,31 @@ class Validator():
                 legal_users.append(i)
         return legal_users
 
+    def parse_invalid(self) -> dict:
+        illegal_writes = {
+            "email": 0,
+            'height': 0,
+            'snils': 0,
+            'passport_number': 0,
+            'occupation': 0,
+            'age': 0,
+            'academic_degree': 0,
+            'worldview': 0,
+            'address': 0
+        }
+
+        for i in self.list_users:
+            illegal_keys = self.parse_user(i)
+
+            for j in illegal_keys:
+                illegal_writes[j] += 1
+
+        return illegal_writes
+
+
     def parse_user(self, user: Users) -> list[str]:
         illegal_keys = []
+
         if not self.check_email(user['email']):
             illegal_keys.append('email')
         elif not self.check_height(user['height']):
@@ -98,6 +119,5 @@ class Validator():
             illegal_keys.append('worldview')
         elif not self.check_address(user['address']):
             illegal_keys.append('address')
-
 
         return illegal_keys
