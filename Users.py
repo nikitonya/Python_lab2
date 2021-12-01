@@ -12,12 +12,13 @@ class Users:
 
     def __init__(self, dct: dict):
         """
-                  Конструктор класса
-                  Parameters
-                  ----------
-                  dict: dict
+            Конструктор класса
+
+            Parameters
+            ----------
+                dict: dict
                     Словарь с полями из файла
-                  """
+        """
         self.email = dct['email']
         self.height = dct['height']
         self.snils = dct['snils']
