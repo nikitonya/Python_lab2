@@ -36,8 +36,8 @@ class Validator():
             return True
         return False
 
-    def check_occupation(self, occupation: str) -> bool:
-        pattern = "^([а-яА-Я]|[a-zA-Z]|-| ){3,}$"
+    def check_occupation(self, occupation: str) -> bool:  # старый паттерн : "^([а-яА-Я]|[a-zA-Z]|-| ){3,}$"
+        pattern = "^([а-яА-Я]|-| ){3,}$"
         if re.match(pattern, occupation):
             return True
         return False
@@ -49,34 +49,36 @@ class Validator():
         return False
 
     def check_academic_degree(self, academic_degree: str) -> bool:
-        pattern = "Кандидат наук|Доктор наук"
+        pattern = "Кандидат наук|Доктор наук|Специалист|Бакалавр|Магистр"
         if re.match(pattern, academic_degree):
             return True
         return False
 
     def check_worldview(self, worldview: str) -> bool:
-        pattern = "Ислам|Буддизм|Христианство|Иудаизм|Конфуциантсво|Древнегреческая мифология" \
-                  "|Синтоизм|Скандинавская мифология|Индуизм|Древнеегипетская религия|" \
-                  "Джайнизм|Славянская мифология|Римская религия|Кельтская мифология|Ведизм"
+        pattern = "Конфуцианство|Иудаизм|Католицизм|Секулярный гуманизм|Пантеизм|Агностицизм|Деизм|Буддизм|Атеизм"
         if re.match(pattern, worldview):
             return True
         return False
 
-    def check_address(self, address: str) -> bool:
-        pattern = "^([а-я]|\s|[А-Я]|\.)+\s[1-9][0-9]*$"
+    def check_address(self, address: str) -> bool: # старый "^([а-я]|\s|[А-Я]|\.)+\s[1-9][0-9]*$"
+        pattern = "^([а-я-]|\s|[А-Я]|\.|(\d{1,2}-[а-я])|(\d{1,3} \W{2})+(\s[1-9][0-9])*)+\s[1-9][0-9]*$"
         if re.match(pattern, address):
             return True
         return False
 
     def parse_valid(self) -> list[Users]:
         legal_users: list[Users] = []
+        count_invalid = 0
         for i in self.list_users:
             illegal_keys = self.parse_user(i)
             if (len(illegal_keys) == 0):
                 legal_users.append(i)
+            else:
+                count_invalid += 1
+        print("Count of invalid writes = ", count_invalid)
         return legal_users
 
-    def parse_invalid(self) -> dict:
+    def parse_invalid(self) -> dict:  # число невалидных записей по типам ошибок
         illegal_writes = {
             "email": 0,
             'height': 0,
@@ -96,7 +98,6 @@ class Validator():
                 illegal_writes[j] += 1
 
         return illegal_writes
-
 
     def parse_user(self, user: Users) -> list[str]:
         illegal_keys = []
