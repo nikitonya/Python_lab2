@@ -2,6 +2,7 @@ import re
 from Users import Users
 from tqdm import tqdm
 
+
 class Validator():
     def __init__(self, list: list[Users]):
         self.list_users = []
@@ -60,7 +61,7 @@ class Validator():
             return True
         return False
 
-    def check_address(self, address: str) -> bool: # старый "^([а-я]|\s|[А-Я]|\.)+\s[1-9][0-9]*$"
+    def check_address(self, address: str) -> bool:  # старый "^([а-я]|\s|[А-Я]|\.)+\s[1-9][0-9]*$"
         pattern = "^([а-я-]|\s|[А-Я]|\.|(\d{1,2}-[а-я])|(\d{1,3} \W{2})+(\s[1-9][0-9])*)+\s[1-9][0-9]*$"
         if re.match(pattern, address):
             return True
@@ -69,18 +70,19 @@ class Validator():
     def parse_valid(self) -> list[Users]:
         legal_users: list[Users] = []
         count_invalid = 0
-        with tqdm(total=len(self.list_users), colour='green', desc='Validation', ncols=150) as progress_bar:
+        count_valid = 0
+        with tqdm(total=len(self.list_users), colour='green', desc='Validation of writes', ncols=150) as progress_bar:
             for i in self.list_users:
                 illegal_keys = self.parse_user(i)
                 if (len(illegal_keys) == 0):
                     legal_users.append(i)
                     progress_bar.update(1)
+                    count_valid += 1
                 else:
                     count_invalid += 1
                     progress_bar.update(1)
-
-
-        print("Count of invalid writes = ", count_invalid)
+        print("Число валидных записей =  ", count_valid)
+        print("Число невалидных записей = ", count_invalid)
         return legal_users
 
     def parse_invalid(self) -> dict:  # число невалидных записей по типам ошибок
