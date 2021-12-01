@@ -1,15 +1,23 @@
 from FileReader import FileReader
 from Validator import Validator
+import argparse
 
+parser = argparse.ArgumentParser(description="Validation")
+parser.add_argument('-input', default='27.txt')
+parser.add_argument('-outputhe', default='output.txt')
+args = parser.parse_args()
 
-read = FileReader("C:\\Users\\nikit\\PycharmProjects\\Python_lab2\\27.txt")
+inputPath = args.input
+outputPath = args.outputhe
+
+read = FileReader(inputPath)
 data = read.read_file()
 
 valid = Validator(data)
 valid.parse_valid()
 print(valid.parse_invalid())
 
-file = open("C:\\Users\\nikit\\PycharmProjects\\Python_lab2\\output.txt", 'w')
+file = open(outputPath, 'w')
 count = 0
 for i in valid.parse_valid():
     count += 1
