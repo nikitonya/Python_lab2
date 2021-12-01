@@ -1,4 +1,5 @@
 class Users:
+    """ Класс для объектов типа "Пользователя" """
     email: str
     height: str
     snils: str
@@ -9,13 +10,20 @@ class Users:
     worldview: str
     address: str
 
-    def __init__(self, dict: dict):
-        self.email = dict['email']
-        self.height = dict['height']
-        self.snils = dict['snils']
-        self.passport_number = dict['passport_number']
-        self.occupation = dict['occupation']
-        self.age = dict['age']
-        self.academic_degree = dict['academic_degree']
-        self.worldview = dict['worldview']
-        self.address = dict['address']
+    def __init__(self, dct: dict):
+        """
+                  Конструктор класса
+                  Parameters
+                  ----------
+                  dict: dict
+                    Словарь с полями из файла
+                  """
+        self.email = dct['email']
+        self.height = dct['height']
+        self.snils = dct['snils']
+        self.passport_number = dct['passport_number']
+        self.occupation = dct['occupation']
+        self.age = dct['age']
+        self.academic_degree = dct['academic_degree']
+        self.worldview = dct['worldview']
+        self.address = dct['address']
