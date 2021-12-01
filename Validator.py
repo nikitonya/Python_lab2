@@ -10,9 +10,6 @@ class Validator():
         for i in list:
             self.list_users.append(i.copy())
 
-    def get_list(self):
-        return self.list_users
-
     def check_email(self, email: str) -> bool:
         pattern = "^[^\\s@]+@([^\\s@.,]+\\.)+[^\\s@.,]{2,}$"
         if re.match(pattern, email):
@@ -37,7 +34,6 @@ class Validator():
             return True
         return False
 
-    # старый паттерн : "^([а-яА-Я]|[a-zA-Z]|-| ){3,}$"
     def check_occupation(self, occupation: str) -> bool:
         pattern = "^([а-яА-Я]|-| ){3,}$"
         if re.match(pattern, occupation):
@@ -62,7 +58,6 @@ class Validator():
             return True
         return False
 
-    # старый "^([а-я]|\s|[А-Я]|\.)+\s[1-9][0-9]*$"
     def check_address(self, address: str) -> bool:
         pattern = "^([а-я-]|\\s|[А-Я]|\\.|(\\d{1,2}-[а-я])|(\\d{1,3} \\W{2})+(\\s[1-9][0-9])*)+\\s[1-9][0-9]*$"
         if re.match(pattern, address):
@@ -87,7 +82,7 @@ class Validator():
         print("Число невалидных записей = ", count_invalid)
         return legal_users
 
-    def parse_invalid(self) -> dict:  # число невалидных записей по типам ошибок
+    def parse_invalid(self) -> dict:
         illegal_writes = {
             "email": 0,
             'height': 0,
