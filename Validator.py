@@ -1,6 +1,6 @@
 import re
 from Users import Users
-
+from tqdm import tqdm
 
 class Validator():
     def __init__(self, list: list[Users]):
@@ -69,12 +69,17 @@ class Validator():
     def parse_valid(self) -> list[Users]:
         legal_users: list[Users] = []
         count_invalid = 0
-        for i in self.list_users:
-            illegal_keys = self.parse_user(i)
-            if (len(illegal_keys) == 0):
-                legal_users.append(i)
-            else:
-                count_invalid += 1
+        with tqdm(total=len(self.list_users), colour='green', desc='Validation', ncols=150) as progress_bar:
+            for i in self.list_users:
+                illegal_keys = self.parse_user(i)
+                if (len(illegal_keys) == 0):
+                    legal_users.append(i)
+                    progress_bar.update(1)
+                else:
+                    count_invalid += 1
+                    progress_bar.update(1)
+
+
         print("Count of invalid writes = ", count_invalid)
         return legal_users
 

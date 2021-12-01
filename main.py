@@ -14,8 +14,6 @@ read = FileReader(inputPath)
 data = read.read_file()
 
 valid = Validator(data)
-valid.parse_valid()
-print(valid.parse_invalid())
 
 file = open(outputPath, 'w')
 count = 0
@@ -24,6 +22,7 @@ for i in valid.parse_valid():
     file.write(str(i) + '\n')
 
 print("Count of valid writes = ", count)
+print("Число невалидных записей по типам ошибок:\n",valid.parse_invalid())
 
 
 
