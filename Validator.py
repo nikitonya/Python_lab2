@@ -14,30 +14,31 @@ class Validator():
         return self.list_users
 
     def check_email(self, email: str) -> bool:
-        pattern = "^[^\s@]+@([^\s@.,]+\.)+[^\s@.,]{2,}$"
+        pattern = "^[^\\s@]+@([^\\s@.,]+\\.)+[^\\s@.,]{2,}$"
         if re.match(pattern, email):
             return True
         return False
 
     def check_height(self, height: str) -> bool:
-        pattern = "^[1-2]+\.+\d\d$"
+        pattern = "^[1-2]+\\.+\\d\\d$"
         if re.match(pattern, str(height)):
             return True
         return False
 
     def check_snils(self, snils: str) -> bool:
-        pattern = "^\d{11}$"
+        pattern = "^\\d{11}$"
         if re.match(pattern, snils):
             return True
         return False
 
     def check_passport_number(self, passport_number: str) -> bool:
-        pattern = "^\d{6}$"
+        pattern = "^\\d{6}$"
         if re.match(pattern, str(passport_number)):
             return True
         return False
 
-    def check_occupation(self, occupation: str) -> bool:  # старый паттерн : "^([а-яА-Я]|[a-zA-Z]|-| ){3,}$"
+    # старый паттерн : "^([а-яА-Я]|[a-zA-Z]|-| ){3,}$"
+    def check_occupation(self, occupation: str) -> bool:
         pattern = "^([а-яА-Я]|-| ){3,}$"
         if re.match(pattern, occupation):
             return True
@@ -61,8 +62,9 @@ class Validator():
             return True
         return False
 
-    def check_address(self, address: str) -> bool:  # старый "^([а-я]|\s|[А-Я]|\.)+\s[1-9][0-9]*$"
-        pattern = "^([а-я-]|\s|[А-Я]|\.|(\d{1,2}-[а-я])|(\d{1,3} \W{2})+(\s[1-9][0-9])*)+\s[1-9][0-9]*$"
+    # старый "^([а-я]|\s|[А-Я]|\.)+\s[1-9][0-9]*$"
+    def check_address(self, address: str) -> bool:
+        pattern = "^([а-я-]|\\s|[А-Я]|\\.|(\\d{1,2}-[а-я])|(\\d{1,3} \\W{2})+(\\s[1-9][0-9])*)+\\s[1-9][0-9]*$"
         if re.match(pattern, address):
             return True
         return False
